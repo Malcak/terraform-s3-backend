@@ -6,7 +6,7 @@ data "aws_iam_account_alias" "alias" {}
 module "backend" {
   source = "github.com/Malcak/terraform-s3-backend.git"
   bucket_purpose = "${var.project}-${var.environment}"
-  accout_alias = "${data.aws_iam_account_alias.alias}"
-  region = "${var.region}"
+  accout_alias   = data.aws_iam_account_alias.current.account_alias
+  region         = var.region
 }
 ```
